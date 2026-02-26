@@ -161,10 +161,10 @@ Deno.serve(async (req) => {
     }
 
     // 10. Redirect to success
-    return Response.redirect(`${frontendUrl}/verify/${slug}?success=true`, 302);
+    return Response.redirect(`https://verify.snowymarket.store/verify/${slug}?success=true`, 302);
 
   } catch (error) {
     console.error("Callback error:", error);
-    return Response.redirect(`${frontendUrl}/verify/${slug}?error=unknown`, 302);
+    return Response.redirect(`https://verify.snowymarket.store/verify/${slug}?error=unknown`, 302);
   }
 });
