@@ -113,23 +113,7 @@ Deno.serve(async (req) => {
     if (upsertError) {
       console.error("Upsert error:", upsertError);
     }
-
-    // 7. Add member to guild using bot token + OAuth access token (guilds.join)
-    const joinRes = await fetch(
-      `https://discord.com/api/v10/guilds/${guildId}/members/${discordId}`,
-      {
-        method: "PUT",
-        headers: {
-          Authorization: `Bot ${botToken}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          access_token: accessToken,
-          ...(server?.verify_role_id ? { roles: [server.verify_role_id] } : {}),
-        }),
-      }
-    );
-
+    
     // If member already in guild, just add role
     if (joinRes.status === 204 && server?.verify_role_id) {
       await fetch(
